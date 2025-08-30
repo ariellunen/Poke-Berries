@@ -46,6 +46,15 @@ src/
 ├── index.js
 └── index.css
 
+src/
+components/ - BerryCard.js - FirmnessSlider.js  
+ - SearchBar.js
+hooks/ - useDebounce.js
+config/ - firmness.js
+App.js
+index.js
+index.css
+
 ---
 
 ## ▶️ Getting Started
