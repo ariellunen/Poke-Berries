@@ -38,9 +38,9 @@ The app displays Pokémon berries, allows filtering by firmness, searching by na
    ```
 2. Install dependencies
    ```bash
-npm install
+   npm install
    ```
 3. Run the app:
    ```bash
- npm start
+   npm start
    ```
