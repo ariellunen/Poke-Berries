@@ -1,71 +1,70 @@
-# Getting Started with Create React App
+# 🍓 Berries Pokédex
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple React application built for an interview assignment.  
+The app displays Pokémon berries, allows filtering by firmness, searching by name, and includes some bonus features.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+- **Fetch berries from the PokéAPI**
+- **Firmness filter** – interactive vertical slider with categories and counts
+- **Search by name** – filter berries by typing in the search field
+- **Debounce mechanism** – search runs after 1 second (as requested in assignment)
+- **Custom hook** – `useDebounce` extracted into its own file
+- **Error handling & loading states** – spinner and error message if API fails
+- **Empty state** – message when no berries match filters
+- **Fallback images** – default image when berry sprite is missing
+- **Responsive UI** – flex-based layout, slider on the left and results on the right
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tech Stack
 
-### `npm test`
+- **React** (with hooks)
+- **Material-UI (MUI)** – for Slider & UI components
+- **PokéAPI** – data source
+- **Custom Hooks** (`useDebounce`)
+- **CSS** (spinner, styling)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📂 Project Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+src/
+components/
+BerryCard.js
+FirmnessSlider.js
+SearchBar.js
+hooks/
+useDebounce.js
+config/
+firmness.js
+App.js
+index.js
+index.css
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## ▶️ Getting Started
 
-### `npm run eject`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ariellunen/Poke-Berries.git
+   cd Poke-Berries
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+````
+2. Install dependencies:
+   ```bash
+npm install
+````
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Run the app:
+   ```bash
+   npm start
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# Poke-Berries
+```
