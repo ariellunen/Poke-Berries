@@ -36,18 +36,11 @@ The app displays Pokémon berries, allows filtering by firmness, searching by na
    git clone https://github.com/ariellunen/Poke-Berries.git
    cd Poke-Berries
    ```
-
-````
-
 2. Install dependencies
    ```bash
 npm install
    ```
-
-````
 3. Run the app:
    ```bash
  npm start
    ```
-
-````
