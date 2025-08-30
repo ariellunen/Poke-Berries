@@ -107,6 +107,12 @@ function App() {
     counts[f] = berries.filter((b) => b.firmness === f).length;
   });
 
+  const filteredBerries = berries.filter(
+    (b) =>
+      (!selectedFirmness || b.firmness === selectedFirmness) &&
+      b.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+  );
+
   return (
     <div style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
       {/* Left: Slider */}
@@ -176,15 +182,15 @@ function App() {
             paddingRight: "10px",
           }}
         >
-          {berries
-            .filter(
-              (b) =>
-                (!selectedFirmness || b.firmness === selectedFirmness) &&
-                b.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
-            )
-            .map((berry) => (
+          {filteredBerries.length === 0 ? (
+            <p style={{ textAlign: "center", color: "#777" }}>
+              No berries found
+            </p>
+          ) : (
+            filteredBerries.map((berry) => (
               <BerryCard key={berry.name} berry={berry} />
-            ))}
+            ))
+          )}
         </div>
       </div>
     </div>
