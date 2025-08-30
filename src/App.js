@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import BerryCard from "./components/BerryCard";
 import FirmnessSlider from "./components/FirmnessSlider";
 import SearchBar from "./components/SearchBar";
-
+import useDebounce from "./hooks/useDebounce";
 function App() {
   const [berries, setBerries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selectedFirmness, setSelectedFirmness] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm, 1000);
 
   useEffect(() => {
     const fetchBerries = async () => {
@@ -15,7 +17,7 @@ function App() {
         const res = await fetch("https://pokeapi.co/api/v2/berry");
         const data = await res.json();
 
-        const detailed = await Promise.all(
+        const detailed = await Promise.allSettled(
           data.results.map(async (berry) => {
             const resBerry = await fetch(berry.url);
             const berryData = await resBerry.json();
@@ -34,9 +36,14 @@ function App() {
           })
         );
 
-        setBerries(detailed);
+        const successfulBerries = detailed
+          .filter((result) => result.status === "fulfilled")
+          .map((result) => result.value);
+
+        setBerries(successfulBerries);
       } catch (err) {
         console.error("Error fetching berries:", err);
+        setError(err);
       } finally {
         setLoading(false);
       }
@@ -45,7 +52,37 @@ function App() {
     fetchBerries();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <div className="spinner"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <p style={{ color: "red" }}>
+          Something went wrong. Please try again later.
+        </p>
+      </div>
+    );
+  }
 
   const firmnessOrder = [
     "very-soft",
@@ -143,7 +180,7 @@ function App() {
             .filter(
               (b) =>
                 (!selectedFirmness || b.firmness === selectedFirmness) &&
-                b.name.toLowerCase().includes(searchTerm.toLowerCase())
+                b.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
             )
             .map((berry) => (
               <BerryCard key={berry.name} berry={berry} />

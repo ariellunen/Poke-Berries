@@ -1,13 +1,5 @@
 import Slider from "@mui/material/Slider";
-
-const firmnessColors = {
-  "very-soft": "#f48fb1",
-  soft: "#81d4fa",
-  medium: "#ffd54f",
-  hard: "#a5d6a7",
-  "very-hard": "#ce93d8",
-  "super-hard": "#ffcc80",
-};
+import { FIRMNESS_CONFIG } from "../config/firmness";
 
 const FirmnessSlider = ({
   marks,
@@ -15,8 +7,7 @@ const FirmnessSlider = ({
   selectedFirmness,
   counts,
 }) => {
-  const color = firmnessColors[selectedFirmness] || "#1976d2"; // default
-
+  const color = FIRMNESS_CONFIG.colors[selectedFirmness] || "#1976d2"; // default
   return (
     <Slider
       orientation="vertical"
